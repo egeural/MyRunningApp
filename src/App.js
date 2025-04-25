@@ -1,6 +1,7 @@
 import React from 'react';
-import LoginWithStrava from './LoginWithStrava';
-import ExchangeToken from './ExchangeToken';
+import LoginWithStrava from './components/LoginWithStrava';
+import ExchangeToken from './pages/ExchangeToken';
+import runPhoto from './photos/RUNN.jpg'; 
 
 function App() {
   const path = window.location.pathname;
@@ -10,8 +11,16 @@ function App() {
   }
 
   return (
-    <div>
+    <div style={{ textAlign: 'center', padding: '2rem' }}>
       <h1>Welcome to Ege's Running App</h1>
+      <img
+        src={runPhoto}
+        style={{
+          maxWidth: '25%',
+          borderRadius: '12px',
+          marginTop: '1.5rem'
+        }}
+      />
       <LoginWithStrava />
     </div>
   );
