@@ -11,7 +11,7 @@ function App() {
   }
 
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
+    <div style={{ textAlign: 'center', padding: '2rem', fontFamily: 'Roboto, sans-serif' }}>
       <h1>Welcome to Ege's Running App</h1>
       <img
         src={runPhoto}
@@ -20,6 +20,7 @@ function App() {
           borderRadius: '12px',
           marginTop: '1.5rem'
         }}
+        alt="Running"
       />
       <LoginWithStrava />
     </div>

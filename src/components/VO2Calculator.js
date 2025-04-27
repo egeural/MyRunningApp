@@ -8,7 +8,6 @@ function VO2Calculator() {
   const [result, setResult] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
 
-
   const calculate = () => {
     const p = parseFloat(pulse);
     const max = parseFloat(hrMax);
@@ -19,12 +18,10 @@ function VO2Calculator() {
       return;
     }
 
-    // Method 1: Step Test
     let stepVo2 = 0;
     if (gender === 'male') stepVo2 = 111.33 - 0.42 * p;
     else stepVo2 = 65.81 - 0.1847 * p;
 
-    // Method 2: HRmax / HRrest
     const ratio = max / rest;
     const hrVo2 = 15 * ratio;
 
@@ -35,7 +32,7 @@ function VO2Calculator() {
   };
 
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
       <h2>🫁 VO₂ Max Estimator (Step Test vs HR Method)</h2>
 
       <div style={{ margin: '1rem 0' }}>
@@ -43,13 +40,14 @@ function VO2Calculator() {
         <input value={pulse} onChange={(e) => setPulse(e.target.value)} type="number" />
       </div>
 
-            <button
+      <button
         onClick={() => setShowInfo(true)}
         style={{
           marginTop: '0.5rem',
           fontSize: '0.9rem',
           padding: '0.4rem 0.8rem',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontFamily: 'Roboto, sans-serif'
         }}
       >
         What is the Step Test?
@@ -67,10 +65,11 @@ function VO2Calculator() {
           padding: '1.5rem',
           zIndex: 999,
           maxWidth: '400px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+          fontFamily: 'Roboto, sans-serif'
         }}>
           <h4>🪜 Step Test Instructions</h4>
-          <p style={{ fontSize: '0.95rem', textAlign: 'left' }}>
+          <p style={{ fontSize: '0.95rem', textAlign: 'left', fontFamily: 'Roboto, sans-serif' }}>
             1. Use a 12-inch (30 cm) high step or platform. <br />
             2. Step up and down at a consistent pace (24 steps/minute) for exactly 3 minutes. <br />
             3. Sit down immediately after. <br />
@@ -84,7 +83,8 @@ function VO2Calculator() {
               backgroundColor: '#eee',
               padding: '0.5rem 1rem',
               borderRadius: '5px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontFamily: 'Roboto, sans-serif'
             }}
           >
             Got it!
@@ -92,10 +92,9 @@ function VO2Calculator() {
         </div>
       )}
 
-
       <div style={{ margin: '1rem 0' }}>
         <label>Gender: </label>
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+        <select value={gender} onChange={(e) => setGender(e.target.value)} style={{ fontFamily: 'Roboto, sans-serif' }}>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -113,17 +112,24 @@ function VO2Calculator() {
         <input value={hrRest} onChange={(e) => setHrRest(e.target.value)} type="number" />
       </div>
 
-      <button onClick={calculate} style={{ marginTop: '1rem', padding: '0.75rem 1.5rem' }}>
+      <button
+        onClick={calculate}
+        style={{
+          marginTop: '1rem',
+          padding: '0.75rem 1.5rem',
+          fontFamily: 'Roboto, sans-serif'
+        }}
+      >
         Compare VO₂ max
       </button>
 
       {result && (
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ marginTop: '2rem', fontFamily: 'Roboto, sans-serif' }}>
           <h3>📊 Results:</h3>
           <p><strong>Step Test VO₂ max:</strong> {result.stepVo2} mL/kg/min</p>
           <p><strong>HR Formula VO₂ max:</strong> {result.hrVo2} mL/kg/min</p>
 
-          <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>
+          <p style={{ marginTop: '1rem', fontStyle: 'italic', fontFamily: 'Roboto, sans-serif' }}>
             Comparing these methods helps you understand your aerobic fitness from both a recovery and physiological stress perspective.
           </p>
         </div>

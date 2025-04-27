@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-// THE STRAVA CONNECTION
 function LoginWithStrava() {
   const clientID = '156869'; 
   const redirectURI = 'http://localhost:3000/exchange_token';
@@ -9,7 +7,7 @@ function LoginWithStrava() {
   const stravaAuthURL = `https://www.strava.com/oauth/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force&scope=read,activity:read`;
 
   return (
-    <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+    <div style={{ marginTop: '2rem', textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
       <a href={stravaAuthURL}>
         <button style={{
           padding: '1rem 2rem',
@@ -18,7 +16,8 @@ function LoginWithStrava() {
           backgroundColor: '#fc4c02',
           color: 'black',
           border: 'none',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontFamily: 'Roboto, sans-serif'
         }}>
           Connect with Strava
         </button>

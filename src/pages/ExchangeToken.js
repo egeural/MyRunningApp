@@ -4,7 +4,6 @@ import ActivityCharts from '../components/ActivityCharts';
 import Vo2Calculator from '../components/VO2Calculator';
 import HeartRatePaceChart from '../components/HeartRatePaceChart';
 
-
 function ExchangeToken() {
   const [athleteInfo, setAthleteInfo] = useState(null);
   const [activities, setActivities] = useState([]);
@@ -53,11 +52,11 @@ function ExchangeToken() {
   }, []);
 
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
       <h2>Connecting with Strava...</h2>
 
       {athleteInfo && (
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ marginTop: '2rem', fontFamily: 'Roboto, sans-serif' }}>
           <h3>Welcome, {athleteInfo.firstname}!</h3>
           <p>You're now connected to Strava 🧡</p>
         </div>
@@ -75,6 +74,7 @@ function ExchangeToken() {
               border: '1px solid #ccc',
               backgroundColor: '#f3f3f3',
               cursor: 'pointer',
+              fontFamily: 'Roboto, sans-serif',
             }}
           >
             🫁 Open VO₂ Max Tools
@@ -96,6 +96,7 @@ function ExchangeToken() {
                 borderRadius: '12px',
                 overflowY: 'auto',
                 maxHeight: '80vh',
+                fontFamily: 'Roboto, sans-serif',
               }}
             >
               <div style={{ textAlign: 'right' }}>
@@ -106,6 +107,7 @@ function ExchangeToken() {
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
+                    fontFamily: 'Roboto, sans-serif',
                   }}
                 >
                   ❌
@@ -126,7 +128,7 @@ function ExchangeToken() {
           <br />
           <br />
 
-          <div style={{ marginTop: '2rem' }}>
+          <div style={{ marginTop: '2rem', fontFamily: 'Roboto, sans-serif' }}>
             <h3>Your Recent Activities</h3>
             {activities.map((activity) => (
               <ActivityCard key={activity.id} activity={activity} />
@@ -135,7 +137,7 @@ function ExchangeToken() {
         </>
       )}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red', fontFamily: 'Roboto, sans-serif' }}>{error}</p>}
     </div>
   );
 }

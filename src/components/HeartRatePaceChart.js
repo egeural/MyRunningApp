@@ -13,8 +13,8 @@ function HeartRatePaceChart({ data }) {
     });
 
   return (
-    <div style={{ marginTop: '2rem' }}>
-      <h3>❤️ Heart Rate vs 🏃 Pace</h3>
+    <div style={{ marginTop: '2rem', fontFamily: 'Roboto, sans-serif' }}>
+      <h3 style={{ fontFamily: 'Roboto, sans-serif' }}>❤️ Heart Rate vs 🏃 Pace</h3>
       <ResponsiveContainer width="100%" height={400}>
         <ScatterChart>
           <CartesianGrid />
@@ -22,12 +22,12 @@ function HeartRatePaceChart({ data }) {
             dataKey="pace" 
             name="Pace (min/km)" 
             reversed 
-            label={{ value: 'Pace (min/km)', position: 'insideBottom', offset: -5 }}
+            label={{ value: 'Pace (min/km)', position: 'insideBottom', offset: -5, fontFamily: 'Roboto, sans-serif' }}
           />
           <YAxis 
             dataKey="heartRate" 
             name="Heart Rate (bpm)" 
-            label={{ value: 'Heart Rate (bpm)', angle: -90, position: 'insideLeft' }}
+            label={{ value: 'Heart Rate (bpm)', angle: -90, position: 'insideLeft', fontFamily: 'Roboto, sans-serif' }}
           />
           <Tooltip content={({ active, payload }) => {
             if (active && payload && payload.length) {
@@ -38,7 +38,8 @@ function HeartRatePaceChart({ data }) {
                   border: '1px solid #ccc',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  fontSize: '0.9rem'
+                  fontSize: '0.9rem',
+                  fontFamily: 'Roboto, sans-serif'
                 }}>
                   <p><strong>Pace (min/km):</strong> {dataPoint.pace}</p>
                   <p><strong>Heart Rate (bpm):</strong> {dataPoint.heartRate}</p>

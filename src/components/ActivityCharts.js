@@ -10,8 +10,13 @@ function ActivityChart({ data }) {
   }));
 
   return (
-    <div style={{ marginTop: '2vmax', width: '100%', height: 320 }}>
-      <h3>📊 Distance Chart</h3>
+    <div style={{
+      marginTop: '2vmax',
+      width: '100%',
+      height: 320,
+      fontFamily: 'Roboto, sans-serif'
+    }}>
+      <h3 style={{ fontFamily: 'Roboto, sans-serif' }}>📊 Distance Chart</h3>
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>
