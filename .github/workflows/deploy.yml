@@ -15,14 +15,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
+        working-directory: ./src
 
       - name: Build project
         run: npm run build
-        working-directory: ./frontend
+        working-directory: ./src
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
+          publish_dir: ./src/build
