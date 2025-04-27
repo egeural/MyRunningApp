@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ActivityCard from '../components/ActivityCard';
 import ActivityCharts from '../components/ActivityCharts';
 import Vo2Calculator from '../components/VO2Calculator';
+import HeartRatePaceChart from '../components/HeartRatePaceChart';
+
 
 function ExchangeToken() {
   const [athleteInfo, setAthleteInfo] = useState(null);
@@ -115,6 +117,15 @@ function ExchangeToken() {
           )}
 
           <ActivityCharts data={activities} />
+
+          <br />
+          <br />
+
+          <HeartRatePaceChart data={activities} />
+
+          <br />
+          <br />
+
           <div style={{ marginTop: '2rem' }}>
             <h3>Your Recent Activities</h3>
             {activities.map((activity) => (
