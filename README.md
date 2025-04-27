@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# 🏃‍♂️ Ege's Running Analytics App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to my personal running web app!  
+This project connects to **Strava** to analyze running activities, estimate **VO₂ Max**, track **effort levels**, and offer **recovery recommendations** based on scientific sources.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Strava Integration**  
+  Authenticate with Strava and fetch your recent activities (distance, time, pace, heart rate).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Activity Visualization**  
+  Display recent runs with detailed stats and a clean, mobile-responsive layout.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **VO₂ Max Estimator**  
+  Estimate your aerobic fitness using Step Test pulse rate or Heart Rate formulas.
 
-### `npm test`
+- **Heart Rate vs Pace Graph**  
+  Visualize the relationship between your running pace and average heart rate.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Effort Level Tracking**  
+  Rate the perceived difficulty of each run (1–10) using a visual RPE (Rate of Perceived Exertion) scale.
 
-### `npm run build`
+- **Recovery Tips Section**  
+  Open recovery advice sourced from professional coaching and research.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **References and Sources**  
+  Full academic-style citations for all scientific references used in the project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📸 Screenshots
 
-### `npm run eject`
+![image](https://github.com/user-attachments/assets/7a501bdd-ad58-46d2-bac5-c1fcab443606)   ![image](https://github.com/user-attachments/assets/691f8f22-148b-4efd-9607-5c7f8669b9db)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 🛠️ Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Frontend**:  
+  - React.js (Create-React-App)
+  - Recharts (for visualizations)
+  - Vanilla CSS (inline styling)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Backend**:  
+  - Node.js
+  - Express.js
+  - Axios (for Strava API communication)
 
-### Code Splitting
+- **Other Tools**:  
+  - Strava API
+  - LocalStorage (for optional data persistence)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
