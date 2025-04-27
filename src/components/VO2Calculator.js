@@ -13,15 +13,7 @@ function VO2Calculator() {
     const max = parseFloat(hrMax);
     const rest = parseFloat(hrRest);
 
-    if (isNaN(p) || isNaN(max) || isNaN(rest)) {
-      alert('Please enter valid numeric values.');
-      return;
-    }
-
-    let stepVo2 = 0;
-    if (gender === 'male') stepVo2 = 111.33 - 0.42 * p;
-    else stepVo2 = 65.81 - 0.1847 * p;
-
+    let stepVo2 = gender === 'male' ? 111.33 - 0.42 * p : 65.81 - 0.1847 * p;
     const ratio = max / rest;
     const hrVo2 = 15 * ratio;
 

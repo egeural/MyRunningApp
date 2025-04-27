@@ -8,7 +8,6 @@ import { Vo2Button, RecoveryButton, ReferencesButton } from '../components/Butto
 function ExchangeToken() {
   const [athleteInfo, setAthleteInfo] = useState(null);
   const [activities, setActivities] = useState([]);
-  const [error, setError] = useState(null);
   const [showVo2Modal, setShowVo2Modal] = useState(false);
   const [showRecoveryModal, setShowRecoveryModal] = useState(false);
   const [showReferencesModal, setShowReferencesModal] = useState(false);
@@ -16,7 +15,6 @@ function ExchangeToken() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-    console.log('Sending this code to backend:', code);
 
     if (code) {
       fetch('http://localhost:5000/exchange_token', {
@@ -27,8 +25,6 @@ function ExchangeToken() {
         .then((res) => res.json())
         .then((data) => {
           if (data.access_token) {
-            console.log('🎉 Access Token:', data.access_token);
-            console.log('🏃 Athlete:', data.athlete);
             setAthleteInfo(data.athlete);
 
             fetch('http://localhost:5000/get_activities', {
@@ -37,19 +33,8 @@ function ExchangeToken() {
               body: JSON.stringify({ access_token: data.access_token }),
             })
               .then((res) => res.json())
-              .then((activitiesData) => {
-                console.log('📊 Activities:', activitiesData);
-                setActivities(activitiesData);
-              })
-              .catch((err) => {
-                console.error('Error fetching activities:', err);
-                setError('Failed to fetch activities.');
-              });
+              .then((activitiesData) => setActivities(activitiesData));
           }
-        })
-        .catch((err) => {
-          console.error('Error:', err);
-          setError(err.message);
         });
     }
   }, []);
@@ -67,28 +52,19 @@ function ExchangeToken() {
 
       {activities.length > 0 && (
         <>
-          
-
           <ActivityCharts data={activities} />
-
           <br />
           <br />
-
           <HeartRatePaceChart data={activities} />
-
           <br />
           <br />
-
           <div style={{ marginTop: '2rem' }}>
             <h3>Your Recent Activities</h3>
             {activities.map((activity) => (
               <ActivityCard key={activity.id} activity={activity} />
             ))}
           </div>
-
-
           <Vo2Button onClick={() => setShowVo2Modal(true)} />
-
           {showVo2Modal && (
             <div
               style={{
@@ -124,12 +100,9 @@ function ExchangeToken() {
               <Vo2Calculator />
             </div>
           )}
-
           <br />
           <br />
-
           <RecoveryButton onClick={() => setShowRecoveryModal(true)} />
-
           {showRecoveryModal && (
             <div
               style={{
@@ -176,12 +149,9 @@ function ExchangeToken() {
               </ul>
             </div>
           )}
-
           <br />
           <br />
-
           <ReferencesButton onClick={() => setShowReferencesModal(true)} />
-
           {showReferencesModal && (
             <div
               style={{
@@ -246,8 +216,6 @@ function ExchangeToken() {
           )}
         </>
       )}
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
