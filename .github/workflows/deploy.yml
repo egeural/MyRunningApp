@@ -78,7 +78,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with: 
-          path: "src/out"  # Specify the output directory created by npm run build
+          path: "src/.next"  # Specify the output directory created by npm run build
           
       - name: Deploy to GitHub Pages
         id: deployment  # Assigns a unique ID to the step
