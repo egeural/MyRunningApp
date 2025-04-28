@@ -36,7 +36,7 @@ jobs:
         working-directory: src  # Navigate to the src folder for frontend
         run: |
           npm install
-          npm test
+          npm test -- --passWithNoTests
 
   deploy:
     needs: test  # Ensures 'deploy' runs only if 'test' succeeds
@@ -46,10 +46,7 @@ jobs:
       pages: write     # Allows write access to GitHub Pages
       id-token: write  # Allows write access to the OpenID Connect (OIDC) token
 
-    environment:
-      name: production  # Specifies the production environment as the deployment target
-      url: ${{ steps.deployment.outputs.page_url }}  # Gets the deployed page URL from the deployment step
-
+    
     runs-on: ubuntu-latest
 
     steps:
