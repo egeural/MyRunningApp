@@ -46,40 +46,42 @@ jobs:
       pages: write     # Allows write access to GitHub Pages
       id-token: write  # Allows write access to the OpenID Connect (OIDC) token
 
-    
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Authenticated checkout with permissions
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Authenticated checkout with permissions
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
 
-      - name: Start backend server
-        working-directory: backend  # Navigate to the backend folder
-        run: node server.js &  # Run the backend in the background
+    - name: Start backend server
+      working-directory: backend  # Navigate to the backend folder
+      run: node server.js &  # Run the backend in the background
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
-        with:
-          static_site_generator: next
+    - name: Configure GitHub Pages
+      uses: actions/configure-pages@v3
+      with:
+        static_site_generator: next
 
-      - name: Build frontend
-        working-directory: src  # Navigate to the src folder for frontend
-        run: |
-          npm install
-          npm run build
+    - name: Build frontend
+      working-directory: src  # Navigate to the src folder for frontend
+      run: |
+        npm install
+        npm run build
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with: 
-          path: "src/.next"  # Specify the output directory created by npm run build
-          
-      - name: Deploy to GitHub Pages
-        id: deployment  # Assigns a unique ID to the step
-        uses: actions/deploy-pages@v1
+    - name: Verify build output
+      run: ls -al src/.next  # Debugging step to ensure the .next directory exists
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with: 
+        path: "src/.next"  # Specify the output directory created by npm run build
+       
+    - name: Deploy to GitHub Pages
+      id: deployment  # Assigns a unique ID to the step
+      uses: actions/deploy-pages@v1
