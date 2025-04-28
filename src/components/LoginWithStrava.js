@@ -2,8 +2,8 @@ import React from 'react';
 
 function LoginWithStrava() {
   const clientID = '156869'; 
-  const redirectURI = 'http://localhost:3000/exchange_token';
-
+  const redirectURI = 'https://egeural.github.io/MyRunningApp/#/exchange_token';
+  
   const stravaAuthURL = `https://www.strava.com/oauth/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force&scope=read,activity:read`;
 
   return (
