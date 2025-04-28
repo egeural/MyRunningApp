@@ -81,7 +81,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3  # important update to v3
         with:
-          path: 'src/build'
+          path: 'src/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
