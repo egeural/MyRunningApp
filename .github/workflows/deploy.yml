@@ -69,14 +69,20 @@ jobs:
         static_site_generator: next
 
     - name: Build frontend
-      working-directory: src  # Navigate to the src folder for frontend
+      working-directory: src
       run: |
         npm install
         npm run build
+        echo "Build completed"
+
+    - name: Debug build directory
+      run: |
+        echo "Checking .next directory"
+        ls -al src/.next || echo ".next directory not found"
 
     - name: Verify build output
-      run: ls -al src/.next  # Debugging step to ensure the .next directory exists
-
+      run: ls -al src/.next  # Ensure the .next directory exists
+      
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with: 
