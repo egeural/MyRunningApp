@@ -1,11 +1,9 @@
 name: deploy
 on: push
-
 permissions:
   contents: write  # Allows write access to repository contents
   pages: write     # Allows write access to GitHub Pages
   id-token: write  # Allows write access to the OpenID Connect (OIDC) token
-
 jobs: 
   build:
     runs-on: ubuntu-latest
@@ -21,7 +19,6 @@ jobs:
         run: |
           npm install
           npm run build
-
   test: 
     needs: build
     runs-on: ubuntu-latest
@@ -37,57 +34,46 @@ jobs:
         run: |
           npm install
           npm test -- --passWithNoTests
-
   deploy:
     needs: test  # Ensures 'deploy' runs only if 'test' succeeds
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      contents: write  # Allows write access to repository contents
-      pages: write     # Allows write access to GitHub Pages
-      id-token: write  # Allows write access to the OpenID Connect (OIDC) token
-
+      contents: write
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Authenticated checkout with permissions
-
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-
     - name: Start backend server
       working-directory: backend  # Navigate to the backend folder
       run: node server.js &  # Run the backend in the background
-
-    - name: Configure GitHub Pages
+    - name: Setup Pages
       uses: actions/configure-pages@v3
-      with:
-        static_site_generator: next
-
     - name: Build frontend
       working-directory: src
       run: |
         npm install
         npm run build
         echo "Build completed"
-
     - name: Debug build directory
       run: |
-        echo "Checking .next directory"
-        ls -al src/.next || echo ".next directory not found"
-
-    - name: Verify build output
-      run: ls -al src/.next  # Ensure the .next directory exists
-      
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with: 
-        path: "src/.next"  # Specify the output directory created by npm run build
-       
+        echo "Checking build directory"
+        ls -al src/build || echo "build directory not found"
+        echo "Project structure:"
+        find src -type d | grep -v node_modules
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: 'src/build'  # Path to the build output directory for CRA
     - name: Deploy to GitHub Pages
-      id: deployment  # Assigns a unique ID to the step
+      id: deployment
       uses: actions/deploy-pages@v1
