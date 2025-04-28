@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4   # update to v4
+        uses: actions/checkout@v4
       - name: Set up Node.js
-        uses: actions/setup-node@v4 # update to v4
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
       - name: Install dependencies and build frontend
-        working-directory: src
         run: |
           npm install
           npm run build
@@ -25,13 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4   # update to v4
+        uses: actions/checkout@v4
       - name: Set up Node.js
-        uses: actions/setup-node@v4 # update to v4
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
       - name: Install dependencies and test frontend
-        working-directory: src
         run: |
           npm install
           npm test -- --passWithNoTests
@@ -48,10 +46,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4   # update to v4
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4 # update to v4
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
 
@@ -62,10 +60,9 @@ jobs:
           node server.js &
       
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # update to v4
+        uses: actions/configure-pages@v4
 
       - name: Build frontend
-        working-directory: src
         run: |
           npm install
           npm run build
@@ -74,15 +71,15 @@ jobs:
       - name: Debug build directory
         run: |
           echo "Checking build directory"
-          ls -al src/build || echo "build directory not found"
+          ls -al build || echo "build directory not found"
           echo "Project structure:"
-          find src -type d | grep -v node_modules
+          find . -type d -maxdepth 3 | grep -v node_modules
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3  # important update to v3
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: 'src/dist'
+          path: 'build'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # important update to v4
+        uses: actions/deploy-pages@v4
