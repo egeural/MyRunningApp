@@ -76,7 +76,7 @@ jobs:
           npm run build
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with: 
           path: "src/out"  # Specify the output directory created by npm run build
           
