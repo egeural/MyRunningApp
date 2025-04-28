@@ -31,10 +31,21 @@ jobs:
       - run: npm install
       - run: npm test
   deploy:
-    needs: test  # Ensures 'deploy' runs only if 'test' succeeds
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-      - name: Deploy application
-        run: echo "Deploying application..."
+      needs: test  # Ensures 'deploy' runs only if 'test' succeeds
+      runs-on: ubuntu-latest
+      environment:
+        name: production  # Specifies the production environment as the deployment target
+        url: ${{ steps.deployment.outputs.page_url }}  # Gets the deployed page URL from the deployment step
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+  
+        - name: Deploy application
+          id: deployment  # Assigns an ID to this step for referencing outputs
+          run: |
+            echo "Deploying application..."
+            # Add your deployment commands here, e.g., uploading your app to a server or GitHub Pages
+            echo "page_url=https://your-deployment-url.com" >> $GITHUB_ENV
+  
+        - name: Output deployment URL
+          run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"
