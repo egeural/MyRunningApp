@@ -13,11 +13,14 @@ function ExchangeToken() {
   const [showReferencesModal, setShowReferencesModal] = useState(false);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-
+    // For hash router, we need to parse after the # symbol
+    const hashParams = new URLSearchParams(window.location.hash.substring(window.location.hash.indexOf('?')));
+    const code = hashParams.get('code');
+    
+    console.log('Extracted auth code:', code);
+  
     if (code) {
-      fetch('http://localhost:5000/exchange_token', {
+      fetch('https://myrunningapp.onrender.com/exchange_token', {  // Added /exchange_token endpoint
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
@@ -26,8 +29,8 @@ function ExchangeToken() {
         .then((data) => {
           if (data.access_token) {
             setAthleteInfo(data.athlete);
-
-            fetch('http://localhost:5000/get_activities', {
+  
+            fetch('https://myrunningapp.onrender.com/get_activities', {  // Changed to Render URL instead of localhost
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ access_token: data.access_token }),

@@ -2,7 +2,8 @@ import React from 'react';
 
 function LoginWithStrava() {
   const clientID = '156869'; 
-  const redirectURI = 'https://egeural.github.io/MyRunningApp/#/exchange_token';
+  // This redirect URI needs to be URL encoded properly
+  const redirectURI = encodeURIComponent('https://egeural.github.io/MyRunningApp/#/exchange_token');
   
   const stravaAuthURL = `https://www.strava.com/oauth/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force&scope=read,activity:read`;
 
@@ -14,10 +15,11 @@ function LoginWithStrava() {
           fontSize: '16px',
           borderRadius: '8px',
           backgroundColor: '#fc4c02',
-          color: 'black',
+          color: 'white',
           border: 'none',
           cursor: 'pointer',
-          fontFamily: 'Roboto, sans-serif'
+          fontFamily: 'Roboto, sans-serif',
+          fontWeight: 'bold'
         }}>
           Connect with Strava
         </button>
