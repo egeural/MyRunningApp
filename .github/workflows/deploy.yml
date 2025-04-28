@@ -1,28 +1,26 @@
-name: Deploy React App to GitHub Pages
-
-on:
-  push:
-    branches:
-      - master  # When you push to main branch, deploy will trigger
-
-jobs:
-  build-deploy:
+name: deploy
+on: push
+jobs: 
+  build:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
+    steps: 
+      - name: checkout repo
         uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./src
-
-      - name: Build project
-        run: npm run build
-        working-directory: ./src
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src/build
+          node-version: '18.x'
+      - run: npm install
+      - run: npm run build
+  test: 
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+      - run: npm test
