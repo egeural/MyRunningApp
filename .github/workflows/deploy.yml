@@ -1,5 +1,11 @@
 name: deploy
 on: push
+
+permissions:
+  contents: write  # Allows write access to repository contents
+  pages: write     # Allows write access to GitHub Pages
+  id-token: write  # Allows write access to the OpenID Connect (OIDC) token
+
 jobs: 
   build:
     runs-on: ubuntu-latest
