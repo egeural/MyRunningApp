@@ -70,7 +70,7 @@ jobs:
         ls -al src/build || echo "build directory not found"
         echo "Project structure:"
         find src -type d | grep -v node_modules
-    - name: Upload artifact
+    - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
         path: 'src/build'  # Path to the build output directory for CRA
