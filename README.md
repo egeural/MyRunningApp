@@ -25,8 +25,7 @@ Welcome to my personal running web app! This project connects to **Strava** to a
 
 ## 📸 Screenshots
 
-| Dashboard View | Mobile Responsive |
-|:---:|:---:|
+
 | ![Dashboard](https://github.com/user-attachments/assets/7a501bdd-ad58-46d2-bac5-c1fcab443606) | ![Mobile](https://github.com/user-attachments/assets/691f8f22-148b-4efd-9607-5c7f8669b9db) |
 
 ---
